@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addSmurf } from './../actions'
+import { addSmurf } from './../actions';
+import {SET_ERROR } from './../actions';
+import Smurf from './../components/Smurf'
 
 
 const AddForm = (props) => {
@@ -20,12 +22,13 @@ const AddForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (state.name === "" || state.position === "" || state.nickname === "") {
-            errorMessage = "Name, position and nickname fields are required.";
+        props.addSmurf(Smurf);
+        if (state.name === "" || state.position === "" || state.nickname === "" || state.description === "") {
+           return errorMessage;
         }
     }
 
-    const errorMessage = this.state;
+    const errorMessage = SET_ERROR.state;
 
     return(<section>
         <h2>Add Smurf</h2>
@@ -56,7 +59,7 @@ const AddForm = (props) => {
 
 const mapStateToProps = state => {
     return ({
-        error: state.error
+        errorMessage: state.errorMessage
     });
 }
 export default connect(mapStateToProps, {addSmurf})(AddForm);

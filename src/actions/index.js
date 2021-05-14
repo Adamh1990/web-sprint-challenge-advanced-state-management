@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export const FETCH_START = "FETCH_START";
 export const FETCH_SUCCESS = "FETCH_SUCCESS";
 export const ADD_SMURF = "ADD_SMURF";
@@ -17,8 +16,8 @@ export const fetchSmurfs = () => dispatch => {
 }
 
 export const addSmurf = (smurf) => dispatch => {
-    if (smurf.name === '' ||  smurf.nickname === '' || smurf.position === '') {
-        dispatch({type:SET_ERROR, payload: "Name, Position and Nickname are required fields."});
+    if (smurf.name === '' ||  smurf.nickname === '' || smurf.position === '' || smurf.description === '') {
+        dispatch({type:SET_ERROR, payload: "Name, Position, Nickname and Summary are required fields."});
         return;
     }
 
